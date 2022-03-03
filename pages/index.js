@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-const url = 'https://restcountries.com/v3.1/all';
+const url =
+  'https://restcountries.com/v2/all?fields=name,capital,region,flag,population';
 
 export const getStaticProps = async () => {
   try {
@@ -25,10 +26,10 @@ export default function Home({ countries }) {
       </div>
       <div className='countries-list'>
         {countries.map((country) => (
-          <Link href={'/country/' + country.name.common} key={country.cca3}>
+          <Link href={'/country/' + country.name} key={country.name}>
             <li>
-              <a>{country.name.common}</a>
-              <Image src={country.flags.svg} width={200} height={100} />
+              <a>{country.name}</a>
+              <Image src={country.flag} width={200} height={100} />
             </li>
           </Link>
         ))}

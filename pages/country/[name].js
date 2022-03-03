@@ -1,4 +1,4 @@
-const url = 'https://restcountries.com/v3.1/';
+const url = 'https://restcountries.com/v2/';
 
 export const getStaticPaths = async () => {
   try {
@@ -7,7 +7,7 @@ export const getStaticPaths = async () => {
 
     const paths = data.map((country) => {
       return {
-        params: { name: country.name.common.toString() },
+        params: { name: country.name },
       };
     });
 
@@ -34,7 +34,8 @@ const CountryInfo = ({ country }) => {
   return (
     <div className='info'>
       {console.log(country)}
-      <h1>{country[0].name.official}</h1>
+      <h1>{country[0].name}</h1>
+      <h2>{country[0].nativeName}</h2>
     </div>
   );
 };
