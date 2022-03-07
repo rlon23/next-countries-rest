@@ -1,0 +1,15 @@
+.body_loading {
+  position: absolute;
+  z-index: 1;
+  top: 58;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 58px);
+  background-color: white;
+}
+.none {
+  display: none;
+}

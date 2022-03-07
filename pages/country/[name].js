@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react/cjs/react.development';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Loading from './../../components/Loading';
 
 const url = 'https://restcountries.com/v2/';
 
@@ -25,7 +26,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const name = context.params.name;
-  const response = await fetch(url + 'name/' + name);
+  const response = await fetch(url + 'name/' + name + '?fullText=true');
   const data = await response.json();
 
   return {
@@ -57,20 +58,10 @@ const CountryInfo = ({ country }) => {
   } = country[0];
 
   const [bordersArr, setBordersArr] = useState([]);
-
-  // const getBordersFullName = async (borders) => {
-  //   const codeUrl = 'https://restcountries.com/v2/alpha/';
-  //   const borderNames = await Promise.all(
-  //     borders.map(async (ctry) => {
-  //       const names = await fetch(codeUrl + ctry + '?fields=name');
-  //       return names.json();
-  //     })
-  //   );
-
-  //   return borderNames;
-  // };
+  const [loading, setLoading] = useState(false);
 
   const getBordersFullName = async (borders) => {
+    setLoading(true);
     const codeUrl = 'https://restcountries.com/v2/alpha/';
 
     const borderNames = await Promise.all(
@@ -79,11 +70,17 @@ const CountryInfo = ({ country }) => {
         return names.json();
       })
     ).then((result) => setBordersArr(result));
+
+    setLoading(false);
   };
 
   useEffect(() => {
     getBordersFullName(borders);
-  }, []);
+  }, [borders]);
+
+  if (loading) {
+    return <Loading loading={loading} />;
+  }
 
   return (
     <div className='info'>
