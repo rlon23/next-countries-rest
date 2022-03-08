@@ -1,0 +1,60 @@
+@import './../styles/mixins';
+
+.Home {
+  margin-top: 80px;
+  color: var(--black);
+  background-color: var(--very-light-gray);
+  padding: 24px 16px 24px;
+  // height: calc(100% - 80px);
+
+  @include breakpoint(md) {
+    padding: 46px 40px;
+  }
+
+  @include breakpoint(lg) {
+    padding: 46px 60px;
+  }
+
+  @include breakpoint(xl) {
+    padding: 46px 80px;
+  }
+
+  &__search {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+
+    @include breakpoint(md) {
+      flex-flow: row nowrap;
+    }
+  }
+
+  &.dark_mode {
+    color: var(--white);
+    background-color: var(--very-dark-blue);
+  }
+}
+
+.CountriesList {
+  display: grid;
+  margin: 0 40px;
+
+  @include breakpoint(sm) {
+    margin: 0;
+    gap: 12px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include breakpoint(md) {
+    gap: 40px;
+  }
+
+  @include breakpoint(lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @include breakpoint(xl) {
+    gap: 74px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

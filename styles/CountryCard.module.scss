@@ -1,0 +1,48 @@
+@import './mixins';
+
+.CountryCard {
+  margin-bottom: 2.5rem;
+  background-color: var(--white);
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+
+  @include breakpoint(sm) {
+    margin-bottom: 0;
+  }
+
+  &__flag {
+    background-color: bisque;
+    line-height: 0;
+
+    img {
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  &__name {
+    margin-bottom: 0.9375rem;
+    font-size: 1.125rem;
+    font-weight: 800;
+    line-height: 1.5625rem;
+  }
+
+  &__population,
+  &__region {
+    margin-bottom: 0.3125rem;
+  }
+
+  &__info {
+    font-size: 0.875rem;
+    padding: 1.5625rem 1.5rem 2.75rem;
+
+    & span {
+      font-weight: 600;
+    }
+  }
+
+  &.dark_mode {
+    background-color: var(--dark-blue);
+  }
+}

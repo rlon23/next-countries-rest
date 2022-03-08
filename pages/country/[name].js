@@ -64,13 +64,14 @@ const CountryInfo = ({ country }) => {
     setLoading(true);
     const codeUrl = 'https://restcountries.com/v2/alpha/';
 
-    const borderNames = await Promise.all(
-      borders.map(async (ctry) => {
-        const names = await fetch(codeUrl + ctry + '?fields=name');
-        return names.json();
-      })
-    ).then((result) => setBordersArr(result));
-
+    if (borders) {
+      const borderNames = await Promise.all(
+        borders.map(async (ctry) => {
+          const names = await fetch(codeUrl + ctry + '?fields=name');
+          return names.json();
+        })
+      ).then((result) => setBordersArr(result));
+    }
     setLoading(false);
   };
 
